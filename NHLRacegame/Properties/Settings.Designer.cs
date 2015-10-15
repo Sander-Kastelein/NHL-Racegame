@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace NHL_racegame.Properties
+namespace NHLRacegame.Properties
 {
 
 

@@ -1,0 +1,11 @@
+c:\users\sander\documents\visual studio 2012\Projects\NHLRacegame\NHLRacegame\bin\Debug\NHLRacegame.exe.config
+c:\users\sander\documents\visual studio 2012\Projects\NHLRacegame\NHLRacegame\bin\Debug\NHLRacegame.exe
+c:\users\sander\documents\visual studio 2012\Projects\NHLRacegame\NHLRacegame\bin\Debug\NHLRacegame.pdb
+c:\users\sander\documents\visual studio 2012\Projects\NHLRacegame\NHLRacegame\obj\Debug\NHLRacegame.csprojResolveAssemblyReference.cache
+c:\users\sander\documents\visual studio 2012\Projects\NHLRacegame\NHLRacegame\obj\Debug\NHLRacegame.Properties.Resources.resources
+c:\users\sander\documents\visual studio 2012\Projects\NHLRacegame\NHLRacegame\obj\Debug\NHLRacegame.csproj.GenerateResource.Cache
+c:\users\sander\documents\visual studio 2012\Projects\NHLRacegame\NHLRacegame\obj\Debug\NHLRacegame.exe
+c:\users\sander\documents\visual studio 2012\Projects\NHLRacegame\NHLRacegame\obj\Debug\NHLRacegame.pdb
+c:\users\sander\documents\visual studio 2012\Projects\NHLRacegame\NHLRacegame\obj\Debug\NHLRacegame.StartScreen.resources
+c:\users\sander\documents\visual studio 2012\Projects\NHLRacegame\NHLRacegame\obj\Debug\NHLRacegame.Game.resources
+C:\Users\sander\Documents\Visual Studio 2012\Projects\NHLRacegame\NHLRacegame\bin\Debug\car.jpg
