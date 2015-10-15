@@ -62,7 +62,7 @@ namespace NHLRacegame
             maxSpeed = 5;
             maxSpeedWhenFuelIsEmpty = 2;
             minSpeed = -2;
-            minSpeedWhenFuelIsEmpty = 2;
+            minSpeedWhenFuelIsEmpty = -2;
             accelerationSpeedConstant = 0.01;
             decelerationSpeedConstant = 0.005;
             width = bitmap.Width;

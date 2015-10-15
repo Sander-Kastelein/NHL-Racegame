@@ -28,29 +28,38 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btn_start_game = new System.Windows.Forms.Button();
-            this.btn_exit = new System.Windows.Forms.Button();
+            this.btn_start = new System.Windows.Forms.Label();
+            this.btn_exit = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // btn_start_game
+            // btn_start
             // 
-            this.btn_start_game.Location = new System.Drawing.Point(268, 152);
-            this.btn_start_game.Name = "btn_start_game";
-            this.btn_start_game.Size = new System.Drawing.Size(263, 23);
-            this.btn_start_game.TabIndex = 0;
-            this.btn_start_game.Text = "Start Game";
-            this.btn_start_game.UseVisualStyleBackColor = true;
-            this.btn_start_game.Click += new System.EventHandler(this.btn_start_game_Click);
+            this.btn_start.AutoSize = true;
+            this.btn_start.BackColor = System.Drawing.Color.Transparent;
+            this.btn_start.Font = new System.Drawing.Font("Lucida Sans", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_start.ForeColor = System.Drawing.Color.Gold;
+            this.btn_start.Location = new System.Drawing.Point(0, 200);
+            this.btn_start.MinimumSize = new System.Drawing.Size(1024, 0);
+            this.btn_start.Name = "btn_start";
+            this.btn_start.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.btn_start.Size = new System.Drawing.Size(1024, 42);
+            this.btn_start.TabIndex = 0;
+            this.btn_start.Text = "START";
+            this.btn_start.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btn_exit
             // 
-            this.btn_exit.Location = new System.Drawing.Point(268, 231);
+            this.btn_exit.AutoSize = true;
+            this.btn_exit.BackColor = System.Drawing.Color.Transparent;
+            this.btn_exit.Font = new System.Drawing.Font("Lucida Sans", 27.75F, System.Drawing.FontStyle.Bold);
+            this.btn_exit.ForeColor = System.Drawing.Color.Gold;
+            this.btn_exit.Location = new System.Drawing.Point(0, 300);
+            this.btn_exit.MinimumSize = new System.Drawing.Size(1024, 0);
             this.btn_exit.Name = "btn_exit";
-            this.btn_exit.Size = new System.Drawing.Size(263, 23);
+            this.btn_exit.Size = new System.Drawing.Size(1024, 42);
             this.btn_exit.TabIndex = 1;
-            this.btn_exit.Text = "Exit";
-            this.btn_exit.UseVisualStyleBackColor = true;
-            this.btn_exit.Click += new System.EventHandler(this.btn_exit_Click);
+            this.btn_exit.Text = "EXIT";
+            this.btn_exit.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // StartScreen
             // 
@@ -58,19 +67,21 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1024, 768);
             this.Controls.Add(this.btn_exit);
-            this.Controls.Add(this.btn_start_game);
+            this.Controls.Add(this.btn_start);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "StartScreen";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Button btn_start_game;
-        private System.Windows.Forms.Button btn_exit;
+        private System.Windows.Forms.Label btn_start;
+        private System.Windows.Forms.Label btn_exit;
+
     }
 }
 
