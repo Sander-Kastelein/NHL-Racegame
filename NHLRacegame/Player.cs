@@ -101,10 +101,6 @@ namespace NHLRacegame
                     if (speed < maxSpeed)
                     {
                         speed += AccelerationSpeed();
-                        if (speed > maxSpeed)
-                        {
-                            speed = maxSpeed;
-                        }
                     }
                 }
                 else
@@ -112,18 +108,10 @@ namespace NHLRacegame
                     if (speed < maxSpeedWhenFuelIsEmpty)
                     {
                         speed += AccelerationSpeed();
-                        if (speed > maxSpeedWhenFuelIsEmpty)
-                        {
-                            speed = maxSpeedWhenFuelIsEmpty;
-                        }
                     }
                     else
                     {
                         speed -= AccelerationSpeed();
-                        if (speed < maxSpeedWhenFuelIsEmpty)
-                        {
-                            speed = maxSpeedWhenFuelIsEmpty;
-                        }
                     }
                 }
 
@@ -134,10 +122,6 @@ namespace NHLRacegame
                 if (speed > 0)
                 {
                     speed -= DecelerationSpeed();
-                    if (speed < 0)
-                    {
-                        speed = 0;
-                    }
                 }
             }
 
@@ -150,10 +134,6 @@ namespace NHLRacegame
                 {
                     // Breaking
                     speed -= BreakSpeed();
-                    if (speed < 0)
-                    {
-                        speed = 0;
-                    }
                 }
                 else
                 {
@@ -161,18 +141,10 @@ namespace NHLRacegame
                     if (fuel > 0)
                     {
                         speed -= DecelerationSpeed();
-                        if (speed < minSpeed)
-                        {
-                            speed = minSpeed;
-                        }
                     }
                     else
                     {
                         speed -= DecelerationSpeed();
-                        if (speed < minSpeedWhenFuelIsEmpty)
-                        {
-                            speed = minSpeedWhenFuelIsEmpty;
-                        }
                     }
                 }
 
@@ -182,12 +154,18 @@ namespace NHLRacegame
                 if (speed < 0)
                 {
                     speed += DecelerationSpeed();
-                    if (speed > 0)
-                    {
-                        speed = 0;
-                    }
                 }
             }
+
+            if (speed > maxSpeed)
+            {
+                speed = maxSpeed;
+            }
+            if (speed < minSpeed)
+            {
+                speed = minSpeed;
+            }
+
 
             // Corners
 
@@ -203,7 +181,7 @@ namespace NHLRacegame
             {
                 rotation += 360;
             }
-            if (rotation > 360)
+            if (rotation >= 360)
             {
                 rotation -= 360;
             }
