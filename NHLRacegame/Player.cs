@@ -62,11 +62,11 @@ namespace NHLRacegame
             posX = 0;
             posY = 0;
             speed = 0;
-            maxSpeed = 5;
+            maxSpeed = 6;
             maxSpeedWhenFuelIsEmpty = 2;
             minSpeed = -2;
             minSpeedWhenFuelIsEmpty = -2;
-            accelerationSpeedConstant = 0.01;
+            accelerationSpeedConstant = 0.02;
             decelerationSpeedConstant = 0.005;
             width = bitmap.Width;
             height = bitmap.Height;
@@ -304,7 +304,7 @@ namespace NHLRacegame
         {
 
             
-            return Math.Abs(3.5d * (speed / maxSpeed)); // Graden per 1/60ste seconden
+            return Math.Abs(5d * (speed / maxSpeed)); // Graden per 1/60ste seconden
         }
 
 
