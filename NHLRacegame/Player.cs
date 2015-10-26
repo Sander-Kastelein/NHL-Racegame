@@ -231,10 +231,8 @@ namespace NHLRacegame
             PointF drawPoint = new PointF(0,0);
             g.DrawString("Fuel: "+fuel.ToString(), drawFont, drawBrush, drawPoint);
 
-
             g.ResetTransform();
             g.RotateTransform(0);
-            
         }
 
         private void CalculateCoordinates()
@@ -248,15 +246,81 @@ namespace NHLRacegame
             posX += deltaX * speed;
             posY += deltaY * speed;
 
-            if (!game.isPositionOnRoad(posX, posY))
-            {
-                posX = prevPosX;
-                posY = prevPosY;
-            }
+            HandleCollisions(posX, posY, prevPosX, prevPosY);
 
         }
 
 
+        private void HandleCollisions(double x, double y, double prevX, double prevY)
+        {
+            double rot = (rotation / 180) * Math.PI; // Deg 2 rad
+            while (rot >= 2 * Math.PI)
+            {
+                rot -= 2 * Math.PI;
+            }
+            while (rot < 0)
+            {
+                rot += 2 * Math.PI;
+            }
+
+            double frontMiddleX = x + (height * Math.Cos(rot));
+            double frontMiddleY = y + (height * Math.Sin(rot));
+
+            double backMiddleX = x + (height * -Math.Cos(rot));
+            double backMiddleY = y + (height * -Math.Sin(rot));
+
+
+            double frontInverseWidth;
+            double backInverseWidth;
+
+            if (speed < 0)
+            {
+                frontInverseWidth = 5;
+                backInverseWidth = 4;
+            }
+            else if (speed > 0)
+            {
+
+                frontInverseWidth = 4;
+                backInverseWidth = 5;
+            }
+            else
+            {
+                frontInverseWidth = 4;
+                backInverseWidth = 4;
+            }
+
+            double frontRightX = frontMiddleX + (width / frontInverseWidth * Math.Cos(rot + Math.PI * .5));
+            double frontRightY = frontMiddleY + (width / frontInverseWidth * Math.Sin(rot + Math.PI * .5));
+
+            double frontLeftX = frontMiddleX + (width / frontInverseWidth * -Math.Cos(rot + Math.PI * .5));
+            double frontLeftY = frontMiddleY + (width / frontInverseWidth * -Math.Sin(rot + Math.PI * .5));
+
+            double backRightX = backMiddleX + (width / backInverseWidth * Math.Cos(rot + Math.PI * .5));
+            double backRightY = backMiddleY + (width / backInverseWidth * Math.Sin(rot + Math.PI * .5));
+
+            double backLeftX = backMiddleX + (width / backInverseWidth * -Math.Cos(rot + Math.PI * .5));
+            double backLeftY = backMiddleY + (width / backInverseWidth * -Math.Sin(rot + Math.PI * .5));
+
+            if (!game.isPositionOnRoad(frontLeftX, frontLeftY) || !game.isPositionOnRoad(backRightX, backRightY))
+            {
+                posX = prevX;
+                posY = prevY;
+                BumpPenaltySpeed();
+                rotation += BumpPenaltyRotation();
+            }
+            else if (!game.isPositionOnRoad(frontRightX, frontRightY) || !game.isPositionOnRoad(backLeftX, backLeftY))
+            {
+                posX = prevX;
+                posY = prevY;
+                BumpPenaltySpeed();
+                rotation -= BumpPenaltyRotation();
+            }
+
+            
+
+
+        }
 
         private double RotationSpeed()
         {
@@ -292,14 +356,23 @@ namespace NHLRacegame
             return breakSpeedConstant;
         }
 
-        private double BumpPenaltySpeed() // Amount of pixels/tick to slowdown when bumping into something.
-        {
-            return 0.5;
+        private void BumpPenaltySpeed() // Amount of pixels/tick to slowdown when bumping into something. 
+        { // Deze is moeilijk en moet goed!
+            
+            if (speed > 0)
+            {
+                speed -= 1; 
+            }
+            else
+            {
+                speed += 1;
+            }
+
         }
 
         private double BumpPenaltyRotation() // Amount of degrees to turn when hitting sometihing sideways.
         {
-            return 5;
+            return RotationSpeed() * 1.5;
         }
 
         //abc

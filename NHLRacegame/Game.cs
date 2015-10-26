@@ -52,6 +52,15 @@ namespace NHLRacegame
 
         public bool isPositionOnRoad(double x, double y)
         {
+            int ix = (int)Math.Round(x);
+            int iy = (int)Math.Round(y);
+            if (iy < 0 || ix < 0)
+            {
+                return false;
+            }
+            if (iy >= backgroundBitmap.Height) return false;
+            if (ix >= backgroundBitmap.Width) return false;
+
             return backgroundBitmap.GetPixel((int)Math.Round(x), (int)Math.Round(y)).R > 0;
         }
 
@@ -86,7 +95,7 @@ namespace NHLRacegame
             p.posX = 970;
             p.posY = 680;
             drawList.Add(p);
-
+            /*
             Player p2 = new Player(this);
             p2.rotation = -90;
             p2.posX = 990;
@@ -96,7 +105,7 @@ namespace NHLRacegame
             p2.leftKey = Key.A;
             p2.rightKey = Key.D;
             drawList.Add(p2);
-
+            */
 
         }
 
