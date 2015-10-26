@@ -248,11 +248,11 @@ namespace NHLRacegame
             posX += deltaX * speed;
             posY += deltaY * speed;
 
-            // Collission detect map
-
-            
-
-
+            if (!game.isPositionOnRoad(posX, posY))
+            {
+                posX = prevPosX;
+                posY = prevPosY;
+            }
 
         }
 
@@ -290,6 +290,16 @@ namespace NHLRacegame
         private double BreakSpeed()
         {
             return breakSpeedConstant;
+        }
+
+        private double BumpPenaltySpeed() // Amount of pixels/tick to slowdown when bumping into something.
+        {
+            return 0.5;
+        }
+
+        private double BumpPenaltyRotation() // Amount of degrees to turn when hitting sometihing sideways.
+        {
+            return 5;
         }
 
         //abc

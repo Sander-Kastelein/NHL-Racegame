@@ -16,7 +16,7 @@ namespace NHLRacegame
     public partial class Game : Form
     {
         List<ISprite> drawList = new List<ISprite>();
-        public bool[][] mapBounds;
+        public Bitmap backgroundBitmap;
 
         public Game()
         {
@@ -32,33 +32,12 @@ namespace NHLRacegame
             );
 
             BackgroundImage = Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Racemap.bmp"));
-
-            ImageConverter converter = new ImageConverter();
-            byte[] imageByteArray = (byte[])converter.ConvertTo(BackgroundImage, typeof(byte[]));
-            int colCounter = 0;
-            int y = 0;
-
-            mapBounds = new bool[BackgroundImage.Height+1][];
-
-            for (int i = 0; i < mapBounds.Length; i++)
-            {
-                mapBounds[i] = new bool[BackgroundImage.Width];
-            }
-
-            Console.WriteLine(imageByteArray.Length.ToString() + " != "  + (3 * BackgroundImage.Height * BackgroundImage.Width).ToString());
+            backgroundBitmap = new Bitmap(BackgroundImage);
 
 
-            for (int i = 0; i < imageByteArray.Length; i+=3)
-            {
-                if (BackgroundImage.Width == colCounter)
-                {
-                    colCounter = 0;
-                    y++;
-                }
 
-                mapBounds[y][colCounter] = (imageByteArray[i] == 255); // Als red == 255, dan true, anders false
-                colCounter++;
-            }
+
+     
             
 
             Paint += new PaintEventHandler(PaintHandler);
@@ -70,6 +49,13 @@ namespace NHLRacegame
 
             Init();
         }
+
+        public bool isPositionOnRoad(double x, double y)
+        {
+            return backgroundBitmap.GetPixel((int)Math.Round(x), (int)Math.Round(y)).R > 0;
+        }
+
+
 
         public void Tick(Object sender, EventArgs e)
         {
