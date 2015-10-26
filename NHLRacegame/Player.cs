@@ -14,6 +14,8 @@ namespace NHLRacegame
     class Player : ISprite
     {
 
+        public Game game;
+
         // Properties
         public int width, height;
         
@@ -49,8 +51,9 @@ namespace NHLRacegame
 
         public Image bitmap;
 
-        public Player()
+        public Player(Game game)
         {
+            this.game = game;
             // Init
             string path = Path.Combine(Environment.CurrentDirectory, "car.jpg");
 
@@ -217,14 +220,14 @@ namespace NHLRacegame
         {
 
             g.TranslateTransform((float)posX, (float)posY);
-            g.TranslateTransform(-(int)Math.Floor((double)width / 2), -(int)Math.Floor((double)width / 2)); 
+            //g.TranslateTransform(-(int)Math.Floor((double)width / 2), -(int)Math.Floor((double)width / 2)); 
             g.RotateTransform((float)rotation);
             g.DrawImage(bitmap, -width / 2, -height / 2);
 
             g.RotateTransform(-(float)rotation);
 
             Font drawFont = new Font("Arial", 10);
-            SolidBrush drawBrush = new SolidBrush(System.Drawing.Color.Black);
+            SolidBrush drawBrush = new SolidBrush(System.Drawing.Color.Orange);
             PointF drawPoint = new PointF(0,0);
             g.DrawString("Fuel: "+fuel.ToString(), drawFont, drawBrush, drawPoint);
 
@@ -238,15 +241,28 @@ namespace NHLRacegame
         {
             double deltaX = Math.Cos(rotation / 180 * Math.PI);
             double deltaY = Math.Sin(rotation / 180 * Math.PI);
+
+            double prevPosX = posX;
+            double prevPosY = posY;
+
             posX += deltaX * speed;
             posY += deltaY * speed;
+
+            // Collission detect map
+
+            
+
+
+
         }
+
+
 
         private double RotationSpeed()
         {
 
             
-            return Math.Abs(1.5d * (speed / maxSpeed)); // Graden per 1/60ste seconden
+            return Math.Abs(3.5d * (speed / maxSpeed)); // Graden per 1/60ste seconden
         }
 
 
