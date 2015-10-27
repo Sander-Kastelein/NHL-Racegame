@@ -35,3 +35,16 @@ C:\Users\sander\Documents\Visual Studio 2012\Projects\NHL-racegame\NHLRacegame\o
 C:\Users\sander\Documents\Visual Studio 2012\Projects\NHL-racegame\NHLRacegame\obj\Debug\NHLRacegame.Properties.Resources.resources
 C:\Users\sander\Documents\Visual Studio 2012\Projects\NHL-racegame\NHLRacegame\obj\Debug\NHLRacegame.csproj.GenerateResource.Cache
 C:\Users\sander\Documents\Visual Studio 2012\Projects\NHL-racegame\NHLRacegame\bin\Debug\Racemap.bmp
+C:\Users\amir\Desktop\Informatica\Jaar 1\Racegame\NHL-Racegame\NHLRacegame\bin\Debug\NHLRacegame.exe.config
+C:\Users\amir\Desktop\Informatica\Jaar 1\Racegame\NHL-Racegame\NHLRacegame\obj\Debug\NHLRacegame.exe
+C:\Users\amir\Desktop\Informatica\Jaar 1\Racegame\NHL-Racegame\NHLRacegame\obj\Debug\NHLRacegame.pdb
+C:\Users\amir\Desktop\Informatica\Jaar 1\Racegame\NHL-Racegame\NHLRacegame\bin\Debug\car.jpg
+C:\Users\amir\Desktop\Informatica\Jaar 1\Racegame\NHL-Racegame\NHLRacegame\bin\Debug\Racemap.bmp
+C:\Users\amir\Desktop\Informatica\Jaar 1\Racegame\NHL-Racegame\NHLRacegame\bin\Debug\titelbackground.bmp
+C:\Users\amir\Desktop\Informatica\Jaar 1\Racegame\NHL-Racegame\NHLRacegame\bin\Debug\NHLRacegame.exe
+C:\Users\amir\Desktop\Informatica\Jaar 1\Racegame\NHL-Racegame\NHLRacegame\bin\Debug\NHLRacegame.pdb
+C:\Users\amir\Desktop\Informatica\Jaar 1\Racegame\NHL-Racegame\NHLRacegame\obj\Debug\NHLRacegame.csprojResolveAssemblyReference.cache
+C:\Users\amir\Desktop\Informatica\Jaar 1\Racegame\NHL-Racegame\NHLRacegame\obj\Debug\NHLRacegame.Game.resources
+C:\Users\amir\Desktop\Informatica\Jaar 1\Racegame\NHL-Racegame\NHLRacegame\obj\Debug\NHLRacegame.StartScreen.resources
+C:\Users\amir\Desktop\Informatica\Jaar 1\Racegame\NHL-Racegame\NHLRacegame\obj\Debug\NHLRacegame.Properties.Resources.resources
+C:\Users\amir\Desktop\Informatica\Jaar 1\Racegame\NHL-Racegame\NHLRacegame\obj\Debug\NHLRacegame.csproj.GenerateResource.Cache
