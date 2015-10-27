@@ -16,7 +16,7 @@ namespace NHLRacegame
     public partial class Game : Form
     {
         List<ISprite> drawList = new List<ISprite>();
-        public Bitmap backgroundBitmap;
+        public Bitmap roadBitmap;
 
         public Game()
         {
@@ -31,9 +31,9 @@ namespace NHLRacegame
                 true
             );
 
-            BackgroundImage = Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Racemap.bmp"));
-            backgroundBitmap = new Bitmap(BackgroundImage);
-
+            Image roadImage = Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Racemap.bmp"));
+            roadBitmap = new Bitmap(roadImage);
+            BackgroundImage = roadImage;
 
 
 
@@ -52,16 +52,24 @@ namespace NHLRacegame
 
         public bool isPositionOnRoad(double x, double y)
         {
-            int ix = (int)Math.Round(x);
-            int iy = (int)Math.Round(y);
-            if (iy < 0 || ix < 0)
+            try
             {
+                int ix = (int)Math.Round(x);
+                int iy = (int)Math.Round(y);
+                if (iy < 0 || ix < 0)
+                {
+                    return false;
+                }
+                if (iy >= roadBitmap.Height) return false;
+                if (ix >= roadBitmap.Width) return false;
+
+                return roadBitmap.GetPixel((int)Math.Round(x), (int)Math.Round(y)).R > 0;
+            }
+            catch (Exception e)
+            {
+
                 return false;
             }
-            if (iy >= backgroundBitmap.Height) return false;
-            if (ix >= backgroundBitmap.Width) return false;
-
-            return backgroundBitmap.GetPixel((int)Math.Round(x), (int)Math.Round(y)).R > 0;
         }
 
 
@@ -95,7 +103,7 @@ namespace NHLRacegame
             p.posX = 970;
             p.posY = 680;
             drawList.Add(p);
-            /*
+            
             Player p2 = new Player(this);
             p2.rotation = -90;
             p2.posX = 990;
@@ -105,7 +113,7 @@ namespace NHLRacegame
             p2.leftKey = Key.A;
             p2.rightKey = Key.D;
             drawList.Add(p2);
-            */
+            
 
         }
 
