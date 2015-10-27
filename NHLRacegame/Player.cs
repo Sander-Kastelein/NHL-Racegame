@@ -296,12 +296,15 @@ namespace NHLRacegame
             {
                 posX += (width / 12 * Math.Cos(rot + Math.PI * .5));
                 posY += (width / 12 * Math.Sin(rot + Math.PI * .5));
+                BumpPenaltySpeed();
             }
             else if (!game.isPositionOnRoad(frontRightX, frontRightY) && !game.isPositionOnRoad(backRightX, backRightY))
             {
                 posX += (width / 12 * -Math.Cos(rot + Math.PI * .5));
                 posY += (width / 12 * -Math.Sin(rot + Math.PI * .5));
-            }else if (!game.isPositionOnRoad(frontLeftX, frontLeftY) || !game.isPositionOnRoad(backRightX, backRightY))
+                BumpPenaltySpeed();
+            }
+            else if (!game.isPositionOnRoad(frontLeftX, frontLeftY) || !game.isPositionOnRoad(backRightX, backRightY))
             {
                 //posX = prevX;
                 //posY = prevY;
@@ -364,16 +367,16 @@ namespace NHLRacegame
             
             if (speed > 0)
             {
-                speed = (Math.Sqrt(speed) * 0.99 * Math.Sqrt(speed));
+                speed = (Math.Sqrt(speed)) * 1.1;
             }
             else
             {
-                speed += -(Math.Sqrt(speed) * 0.99 * Math.Sqrt(speed));
+                speed -= (Math.Sqrt(speed) * 0.99 * Math.Sqrt(speed));
             }
 
         }
 
-        private double BumpPenaltyRotation() // Amount of degrees to turn when hitting sometihing sideways.
+        private double BumpPenaltyRotation() // Amount of degrees to turn when hitting something sideways.
         {
             return RotationSpeed() * 1.5;
         }
