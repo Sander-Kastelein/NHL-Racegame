@@ -49,7 +49,6 @@ namespace NHLRacegame
         // Stats
         public double fuel = 100;
 
-
         public Image bitmap;
 
         public Player(Game game)
@@ -334,7 +333,7 @@ namespace NHLRacegame
         {
 
             
-            return Math.Abs(5d * (speed / maxSpeed)); // Degrees for every 1/60th of a second.
+            return Math.Abs(5d * (speed / Math.Pow(speed, 2) + 0.01)); // Degrees for every 1/60th of a second.
         }
 
 
