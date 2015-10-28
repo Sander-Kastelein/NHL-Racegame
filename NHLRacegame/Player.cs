@@ -319,7 +319,7 @@ namespace NHLRacegame
                 rotation -= BumpPenaltyRotation();
             }
 
-            // niet aankomen
+            // do not touch!
             if(posX < 0) posX = 0;
             if (posX > game.Width) posX = game.Width;
 
@@ -385,7 +385,7 @@ namespace NHLRacegame
 
         private double BumpPenaltyRotation() // Amount of degrees to turn when hitting something sideways.
         {
-            return RotationSpeed() * 1.5;
+            return RotationSpeed() * 1.3;
         }
 
         //abc
