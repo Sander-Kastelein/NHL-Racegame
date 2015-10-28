@@ -333,7 +333,7 @@ namespace NHLRacegame
         {
 
             
-            return Math.Abs(5d * (speed / Math.Pow(speed, 2) + 0.01)); // Degrees for every 1/60th of a second.
+            return Math.Abs(5d * (speed / (Math.Pow(speed, 2) + 1))); // Degrees for every 1/60th of a second.
         }
 
 
@@ -358,8 +358,8 @@ namespace NHLRacegame
             }
             else
             {
-                double oppositeForce = speed * mass + 0.1;
-                double accelerationSpeed = accelerationSpeedConstant / oppositeForce;
+                double oppositeForce = speed * mass;
+                double accelerationSpeed = accelerationSpeedConstant / (oppositeForce + 1);
                 Console.WriteLine(speed);
                 return accelerationSpeed;
             }
