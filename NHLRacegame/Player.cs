@@ -29,7 +29,7 @@ namespace NHLRacegame
         public double minSpeedWhenFuelIsEmpty;
 
         public double fullSpeedFuelUsage = 0.05;
-
+      //public int mass = 30;
 
         // Position
         public double posX, posY;
@@ -70,7 +70,7 @@ namespace NHLRacegame
             decelerationSpeedConstant = 0.005;
             width = bitmap.Width;
             height = bitmap.Height;
-            breakSpeedConstant = 0.01;
+            breakSpeedConstant = 0.04;
 
         }
 
@@ -137,7 +137,7 @@ namespace NHLRacegame
                 }
                 else
                 {
-                    // Descelerating
+                    // Decelerating
                     if (fuel > 0)
                     {
                         speed -= DecelerationSpeed();
@@ -332,7 +332,7 @@ namespace NHLRacegame
         {
 
             
-            return Math.Abs(5d * (speed / maxSpeed)); // Graden per 1/60ste seconden
+            return Math.Abs(5d * (speed / maxSpeed)); // Degrees for every 1/60th of a second.
         }
 
 
@@ -349,21 +349,28 @@ namespace NHLRacegame
 
         private double AccelerationSpeed()
         {
+            /* Works but only after collision.(???)
+                double oppositeForce = speed * mass;
+                double accelerationSpeed = accelerationSpeedConstant / oppositeForce;
+                Console.WriteLine(accelerationSpeed);
+                return accelerationSpeed;    
+            */
             return accelerationSpeedConstant;
         }
 
         private double DecelerationSpeed()
+            //decelerationSpeedConstant could be looked at.
         {
             return decelerationSpeedConstant;
         }
-
+            //breakSpeedConstant is fine.
         private double BreakSpeed()
         {
             return breakSpeedConstant;
         }
 
         private void BumpPenaltySpeed() // Amount of pixels/tick to slowdown when bumping into something. 
-        { // Deze is moeilijk en moet goed!
+        { // Difficult and needs to be done right!
             
             if (speed > 0)
             {
@@ -371,7 +378,7 @@ namespace NHLRacegame
             }
             else
             {
-                speed -= (Math.Sqrt(speed) * 0.99 * Math.Sqrt(speed));
+                speed = 0.9 * speed;
             }
 
         }
