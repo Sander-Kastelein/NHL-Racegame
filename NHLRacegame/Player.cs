@@ -342,7 +342,7 @@ namespace NHLRacegame
         {
             // Burn baby burn
 
-            fuel -= fullSpeedFuelUsage * (Math.Abs(speed) / maxSpeed);
+            fuel -= fullSpeedFuelUsage * (Math.Abs(speed) / ( 2 * maxSpeed));
             if (fuel < 0)
             {
                 fuel = 0;
