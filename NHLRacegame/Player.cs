@@ -14,6 +14,8 @@ namespace NHLRacegame
     class Player : ISprite
     {
 
+        public Game game;
+
         // Properties
         public int width, height;
         
@@ -27,7 +29,7 @@ namespace NHLRacegame
         public double minSpeedWhenFuelIsEmpty;
 
         public double fullSpeedFuelUsage = 0.05;
-
+      //public int mass = 30;
 
         // Position
         public double posX, posY;
@@ -49,8 +51,9 @@ namespace NHLRacegame
 
         public Image bitmap;
 
-        public Player()
+        public Player(Game game)
         {
+            this.game = game;
             // Init
             string path = Path.Combine(Environment.CurrentDirectory, "car.jpg");
 
@@ -59,15 +62,15 @@ namespace NHLRacegame
             posX = 0;
             posY = 0;
             speed = 0;
-            maxSpeed = 5;
-            maxSpeedWhenFuelIsEmpty = 2;
+            maxSpeed = 3;
+            maxSpeedWhenFuelIsEmpty = 1.5;
             minSpeed = -2;
-            minSpeedWhenFuelIsEmpty = -2;
-            accelerationSpeedConstant = 0.01;
+            minSpeedWhenFuelIsEmpty = -1;
+            accelerationSpeedConstant = 0.02;
             decelerationSpeedConstant = 0.005;
             width = bitmap.Width;
             height = bitmap.Height;
-            breakSpeedConstant = 0.01;
+            breakSpeedConstant = 0.04;
 
         }
 
@@ -98,10 +101,6 @@ namespace NHLRacegame
                     if (speed < maxSpeed)
                     {
                         speed += AccelerationSpeed();
-                        if (speed > maxSpeed)
-                        {
-                            speed = maxSpeed;
-                        }
                     }
                 }
                 else
@@ -109,18 +108,10 @@ namespace NHLRacegame
                     if (speed < maxSpeedWhenFuelIsEmpty)
                     {
                         speed += AccelerationSpeed();
-                        if (speed > maxSpeedWhenFuelIsEmpty)
-                        {
-                            speed = maxSpeedWhenFuelIsEmpty;
-                        }
                     }
                     else
                     {
                         speed -= AccelerationSpeed();
-                        if (speed < maxSpeedWhenFuelIsEmpty)
-                        {
-                            speed = maxSpeedWhenFuelIsEmpty;
-                        }
                     }
                 }
 
@@ -131,10 +122,6 @@ namespace NHLRacegame
                 if (speed > 0)
                 {
                     speed -= DecelerationSpeed();
-                    if (speed < 0)
-                    {
-                        speed = 0;
-                    }
                 }
             }
 
@@ -147,29 +134,17 @@ namespace NHLRacegame
                 {
                     // Breaking
                     speed -= BreakSpeed();
-                    if (speed < 0)
-                    {
-                        speed = 0;
-                    }
                 }
                 else
                 {
-                    // Descelerating
+                    // Decelerating
                     if (fuel > 0)
                     {
                         speed -= DecelerationSpeed();
-                        if (speed < minSpeed)
-                        {
-                            speed = minSpeed;
-                        }
                     }
                     else
                     {
                         speed -= DecelerationSpeed();
-                        if (speed < minSpeedWhenFuelIsEmpty)
-                        {
-                            speed = minSpeedWhenFuelIsEmpty;
-                        }
                     }
                 }
 
@@ -179,12 +154,18 @@ namespace NHLRacegame
                 if (speed < 0)
                 {
                     speed += DecelerationSpeed();
-                    if (speed > 0)
-                    {
-                        speed = 0;
-                    }
                 }
             }
+
+            if (speed > maxSpeed)
+            {
+                speed = maxSpeed;
+            }
+            if (speed < minSpeed)
+            {
+                speed = minSpeed;
+            }
+
 
             // Corners
 
@@ -200,7 +181,7 @@ namespace NHLRacegame
             {
                 rotation += 360;
             }
-            if (rotation > 360)
+            if (rotation >= 360)
             {
                 rotation -= 360;
             }
@@ -217,36 +198,141 @@ namespace NHLRacegame
         {
 
             g.TranslateTransform((float)posX, (float)posY);
-            g.TranslateTransform(-(int)Math.Floor((double)width / 2), -(int)Math.Floor((double)width / 2)); 
+            //g.TranslateTransform(-(int)Math.Floor((double)width / 2), -(int)Math.Floor((double)width / 2)); 
             g.RotateTransform((float)rotation);
             g.DrawImage(bitmap, -width / 2, -height / 2);
 
             g.RotateTransform(-(float)rotation);
 
             Font drawFont = new Font("Arial", 10);
-            SolidBrush drawBrush = new SolidBrush(System.Drawing.Color.Black);
+            SolidBrush drawBrush = new SolidBrush(System.Drawing.Color.Orange);
             PointF drawPoint = new PointF(0,0);
             g.DrawString("Fuel: "+fuel.ToString(), drawFont, drawBrush, drawPoint);
 
-
             g.ResetTransform();
             g.RotateTransform(0);
-            
         }
 
         private void CalculateCoordinates()
         {
             double deltaX = Math.Cos(rotation / 180 * Math.PI);
             double deltaY = Math.Sin(rotation / 180 * Math.PI);
+
+            double prevPosX = posX;
+            double prevPosY = posY;
+
             posX += deltaX * speed;
             posY += deltaY * speed;
+
+            HandleCollisions(posX, posY, prevPosX, prevPosY);
+
+        }
+
+
+        private void HandleCollisions(double x, double y, double prevX, double prevY)
+        {
+            double rot = (rotation / 180) * Math.PI; // Deg 2 rad
+            while (rot >= 2 * Math.PI)
+            {
+                rot -= 2 * Math.PI;
+            }
+            while (rot < 0)
+            {
+                rot += 2 * Math.PI;
+            }
+
+            double frontMiddleX = x + (height * Math.Cos(rot));
+            double frontMiddleY = y + (height * Math.Sin(rot));
+
+            double backMiddleX = x + (height * -Math.Cos(rot));
+            double backMiddleY = y + (height * -Math.Sin(rot));
+
+
+            double frontInverseWidth;
+            double backInverseWidth;
+
+            /*
+            if (speed < 0)
+            {
+                frontInverseWidth = 5;
+                backInverseWidth = 4;
+            }
+            else if (speed > 0)
+            {
+
+                frontInverseWidth = 4;
+                backInverseWidth = 5;
+            }
+            else
+            {
+                frontInverseWidth = 4;
+                backInverseWidth = 4;
+            }
+            */
+
+            double frontRightX = frontMiddleX + (width / 4 * Math.Cos(rot + Math.PI * .5));
+            double frontRightY = frontMiddleY + (width / 4 * Math.Sin(rot + Math.PI * .5));
+
+            double frontLeftX = frontMiddleX + (width / 4 * -Math.Cos(rot + Math.PI * .5));
+            double frontLeftY = frontMiddleY + (width / 4 * -Math.Sin(rot + Math.PI * .5));
+
+            double backRightX = backMiddleX + (width / 4 * Math.Cos(rot + Math.PI * .5));
+            double backRightY = backMiddleY + (width / 4 * Math.Sin(rot + Math.PI * .5));
+
+            double backLeftX = backMiddleX + (width / 4 * -Math.Cos(rot + Math.PI * .5));
+            double backLeftY = backMiddleY + (width / 4 * -Math.Sin(rot + Math.PI * .5));
+
+
+            if (!game.isPositionOnRoad(frontLeftX, frontLeftY) || !game.isPositionOnRoad(frontRightX, frontRightY) || !game.isPositionOnRoad(backLeftX, backLeftY) || !game.isPositionOnRoad(backRightX, backRightY))
+            {
+                posX = prevX;
+                posY = prevY;
+            }
+
+            if(!game.isPositionOnRoad(frontLeftX, frontLeftY) && !game.isPositionOnRoad(frontRightX, frontRightY)){
+                speed = 0;
+            }
+            else if (!game.isPositionOnRoad(frontLeftX, frontLeftY) && !game.isPositionOnRoad(backLeftX, backLeftY))
+            {
+                posX += (width / 12 * Math.Cos(rot + Math.PI * .5));
+                posY += (width / 12 * Math.Sin(rot + Math.PI * .5));
+                BumpPenaltySpeed();
+            }
+            else if (!game.isPositionOnRoad(frontRightX, frontRightY) && !game.isPositionOnRoad(backRightX, backRightY))
+            {
+                posX += (width / 12 * -Math.Cos(rot + Math.PI * .5));
+                posY += (width / 12 * -Math.Sin(rot + Math.PI * .5));
+                BumpPenaltySpeed();
+            }
+            else if (!game.isPositionOnRoad(frontLeftX, frontLeftY) || !game.isPositionOnRoad(backRightX, backRightY))
+            {
+                //posX = prevX;
+                //posY = prevY;
+                BumpPenaltySpeed();
+                rotation += BumpPenaltyRotation();
+            }
+            else if (!game.isPositionOnRoad(frontRightX, frontRightY) || !game.isPositionOnRoad(backLeftX, backLeftY))
+            {
+                //posX = prevX;
+                //posY = prevY;
+                BumpPenaltySpeed();
+                rotation -= BumpPenaltyRotation();
+            }
+
+            // niet aankomen
+            if(posX < 0) posX = 0;
+            if (posX > game.Width) posX = game.Width;
+
+            if (posY < 0) posY = 0;
+            if (posY > game.Height) posY = game.Height;
+
         }
 
         private double RotationSpeed()
         {
 
             
-            return Math.Abs(1.5d * (speed / maxSpeed)); // Graden per 1/60ste seconden
+            return Math.Abs(5d * (speed / maxSpeed)); // Degrees for every 1/60th of a second.
         }
 
 
@@ -263,17 +349,43 @@ namespace NHLRacegame
 
         private double AccelerationSpeed()
         {
+            /* Works but only after collision.(???)
+                double oppositeForce = speed * mass;
+                double accelerationSpeed = accelerationSpeedConstant / oppositeForce;
+                Console.WriteLine(accelerationSpeed);
+                return accelerationSpeed;    
+            */
             return accelerationSpeedConstant;
         }
 
         private double DecelerationSpeed()
+            //decelerationSpeedConstant could be looked at.
         {
             return decelerationSpeedConstant;
         }
-
+            //breakSpeedConstant is fine.
         private double BreakSpeed()
         {
             return breakSpeedConstant;
+        }
+
+        private void BumpPenaltySpeed() // Amount of pixels/tick to slowdown when bumping into something. 
+        { // Difficult and needs to be done right!
+            
+            if (speed > 0)
+            {
+                speed = (Math.Sqrt(speed)) * 1.1;
+            }
+            else
+            {
+                speed = 0.9 * speed;
+            }
+
+        }
+
+        private double BumpPenaltyRotation() // Amount of degrees to turn when hitting something sideways.
+        {
+            return RotationSpeed() * 1.5;
         }
 
         //abc

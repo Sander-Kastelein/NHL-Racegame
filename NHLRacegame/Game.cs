@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +16,7 @@ namespace NHLRacegame
     public partial class Game : Form
     {
         List<ISprite> drawList = new List<ISprite>();
+        public Bitmap roadBitmap;
 
         public Game()
         {
@@ -28,7 +30,16 @@ namespace NHLRacegame
                 ControlStyles.AllPaintingInWmPaint,
                 true
             );
-           
+
+            Image roadImage = Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Racemap.bmp"));
+            roadBitmap = new Bitmap(roadImage);
+            BackgroundImage = roadImage;
+
+
+
+     
+            
+
             Paint += new PaintEventHandler(PaintHandler);
 
             Timer GameTimer = new Timer();
@@ -38,6 +49,30 @@ namespace NHLRacegame
 
             Init();
         }
+
+        public bool isPositionOnRoad(double x, double y)
+        {
+            try
+            {
+                int ix = (int)Math.Round(x);
+                int iy = (int)Math.Round(y);
+                if (iy < 0 || ix < 0)
+                {
+                    return false;
+                }
+                if (iy >= roadBitmap.Height) return false;
+                if (ix >= roadBitmap.Width) return false;
+
+                return roadBitmap.GetPixel((int)Math.Round(x), (int)Math.Round(y)).R > 0;
+            }
+            catch (Exception e)
+            {
+
+                return false;
+            }
+        }
+
+
 
         public void Tick(Object sender, EventArgs e)
         {
@@ -63,19 +98,22 @@ namespace NHLRacegame
 
         public void Init()
         {
-            Player p = new Player();
+            Player p = new Player(this);
+            p.rotation = -90;
+            p.posX = 970;
+            p.posY = 680;
             drawList.Add(p);
-
-            Player p2 = new Player();
             
-
+            Player p2 = new Player(this);
+            p2.rotation = -90;
+            p2.posX = 990;
+            p2.posY = 680;
             p2.upKey = Key.W;
             p2.downKey = Key.S;
             p2.leftKey = Key.A;
             p2.rightKey = Key.D;
-
             drawList.Add(p2);
-
+            
 
         }
 
