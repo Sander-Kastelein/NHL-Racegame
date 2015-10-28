@@ -22,6 +22,7 @@ namespace NHLRacegame
         public double accelerationSpeedConstant;
         public double breakSpeedConstant;
         public double decelerationSpeedConstant;
+        public double accelerateBelowZeroConstant;
 
         public double maxSpeed;
         public double maxSpeedWhenFuelIsEmpty;
@@ -29,7 +30,7 @@ namespace NHLRacegame
         public double minSpeedWhenFuelIsEmpty;
 
         public double fullSpeedFuelUsage = 0.05;
-      //public int mass = 30;
+        public int mass = 30;
 
         // Position
         public double posX, posY;
@@ -66,7 +67,8 @@ namespace NHLRacegame
             maxSpeedWhenFuelIsEmpty = 1.5;
             minSpeed = -2;
             minSpeedWhenFuelIsEmpty = -1;
-            accelerationSpeedConstant = 0.02;
+            accelerationSpeedConstant = 0.2;
+            accelerateBelowZeroConstant = 0.02;
             decelerationSpeedConstant = 0.005;
             width = bitmap.Width;
             height = bitmap.Height;
@@ -349,19 +351,26 @@ namespace NHLRacegame
 
         private double AccelerationSpeed()
         {
-            /* Works but only after collision.(???)
-                double oppositeForce = speed * mass;
+            //Works only when speed is larger than 0.(???)
+            if (speed < 0)
+            {
+                double accelerateBelowZero = accelerateBelowZeroConstant;
+                return accelerateBelowZero;
+            }
+            else
+            {
+                double oppositeForce = speed * mass + 0.1;
                 double accelerationSpeed = accelerationSpeedConstant / oppositeForce;
-                Console.WriteLine(accelerationSpeed);
-                return accelerationSpeed;    
-            */
-            return accelerationSpeedConstant;
+                Console.WriteLine(speed);
+                return accelerationSpeed;
+            }
+            //return accelerationSpeedConstant;
         }
 
         private double DecelerationSpeed()
-            //decelerationSpeedConstant could be looked at.
         {
-            return decelerationSpeedConstant;
+            //decelerationSpeedConstant could be looked at.
+                return decelerationSpeedConstant;
         }
             //breakSpeedConstant is fine.
         private double BreakSpeed()
