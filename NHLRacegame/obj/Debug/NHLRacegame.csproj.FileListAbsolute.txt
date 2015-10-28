@@ -61,3 +61,4 @@ C:\Users\Blanc\NHL-Racegame\NHLRacegame\obj\Debug\NHLRacegame.Game.resources
 C:\Users\Blanc\NHL-Racegame\NHLRacegame\obj\Debug\NHLRacegame.StartScreen.resources
 C:\Users\Blanc\NHL-Racegame\NHLRacegame\obj\Debug\NHLRacegame.Properties.Resources.resources
 C:\Users\Blanc\NHL-Racegame\NHLRacegame\obj\Debug\NHLRacegame.csproj.GenerateResource.Cache
+C:\Users\sander\Documents\Visual Studio 2012\Projects\NHL-racegame\NHLRacegame\obj\Debug\NHLRacegame.CarSelect.resources
