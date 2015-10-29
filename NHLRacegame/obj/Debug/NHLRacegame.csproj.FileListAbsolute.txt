@@ -65,3 +65,4 @@ C:\Users\sander\Documents\Visual Studio 2012\Projects\NHL-racegame\NHLRacegame\b
 C:\Users\sander\Documents\Visual Studio 2012\Projects\NHL-racegame\NHLRacegame\obj\Debug\NHLRacegame.WinScreen.resources
 C:\Users\sander\Documents\Visual Studio 2012\Projects\NHL-racegame\NHLRacegame\bin\Debug\car.png
 C:\Users\sander\Documents\Visual Studio 2012\Projects\NHL-racegame\NHLRacegame\bin\Debug\nyan.gif
+C:\Users\sander\Documents\Visual Studio 2012\Projects\NHL-racegame\NHLRacegame\bin\Debug\start.wav

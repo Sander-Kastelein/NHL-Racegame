@@ -17,7 +17,9 @@ namespace NHLRacegame
     {
         List<ISprite> drawList = new List<ISprite>();
         public Bitmap roadBitmap;
-
+        public bool isPaused = true;
+        public DateTime start;
+        public bool isBegin = true;
 
         public List<PictureBox> nyans = new List<PictureBox>();
 
@@ -105,7 +107,35 @@ namespace NHLRacegame
 
         public void Tick(Object sender, EventArgs e)
         {
-            Loop();
+            
+            if(!isPaused) Loop();
+            if (isBegin)
+            {
+                isBegin = false;
+                System.Media.SoundPlayer player = new System.Media.SoundPlayer();
+                player.SoundLocation = Path.Combine(Environment.CurrentDirectory, "start.wav");
+                player.Play();
+                start = DateTime.Now;
+            }
+
+            if ((DateTime.Now).Subtract(start).Seconds == 1)
+            {
+                startLabel.Text = "2";
+            }
+            if ((DateTime.Now).Subtract(start).Seconds == 2)
+            {
+                startLabel.Text = "1";
+            }
+            if ((DateTime.Now).Subtract(start).Seconds == 3)
+            {
+                startLabel.Text = "0";
+                isPaused = false;
+            }
+            if ((DateTime.Now).Subtract(start).Seconds == 4)
+            {
+                startLabel.Hide();
+            }
+
             Invalidate();
         }
 

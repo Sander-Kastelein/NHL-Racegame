@@ -299,7 +299,6 @@ namespace NHLRacegame
             PointF drawPointPit = new PointF(100 + interfaceOffset, 768 - 57);
             g.DrawString(pitsstopsDone.ToString(), drawFontPit, drawBrushPit, drawPointPit);
         
-        
         }
 
         private void CalculateCoordinates()

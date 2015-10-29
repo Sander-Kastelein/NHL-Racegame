@@ -124,6 +124,9 @@
     <Content Include="Racemapv3.bmp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="start.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="titelbackground.bmp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
