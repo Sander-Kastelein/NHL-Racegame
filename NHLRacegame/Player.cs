@@ -18,7 +18,9 @@ namespace NHLRacegame
 
         // Properties
         public int width, height;
-        
+
+        public string name;
+
         public double accelerationSpeedConstant;
         public double breakSpeedConstant;
         public double decelerationSpeedConstant;
@@ -44,10 +46,14 @@ namespace NHLRacegame
         public Key downKey = Key.Down;
 
         public bool isKeyReversed = false;
-
+        public bool isInPitstop = false;
 
         // Stats
         public double fuel = 100;
+
+        public int lapsDone = 0;
+        public int nextCheckpoint = 255;
+        public int lastCheckpoint = 253;
 
         public Image bitmap;
 
@@ -79,9 +85,62 @@ namespace NHLRacegame
         {
             // Loop
             Navigate();
+            DetectPitstop();
+            DetectCheckpoints();
+            DetectFinish();
             CalculateCoordinates();
             BurnFuel();
             
+        }
+
+        public void DetectPitstop()
+        {
+            System.Drawing.Color currentPosOnMap = game.roadBitmap.GetPixel((int)posX, (int)posY);
+            if (currentPosOnMap.G == 255 && currentPosOnMap.B == 0 && currentPosOnMap.R == 0)
+            {
+                isInPitstop = true;
+            }
+            else
+            {
+                isInPitstop = false;
+            }
+
+            if (isInPitstop)
+            {
+                fuel += 0.2;
+                if (fuel > 100)
+                {
+                    fuel = 100;
+                }
+            }
+
+        }
+
+        public void DetectCheckpoints()
+        {
+            System.Drawing.Color currentPosOnMap = game.roadBitmap.GetPixel((int)posX, (int)posY);
+            if (currentPosOnMap.R == nextCheckpoint)
+            {
+                nextCheckpoint--;
+            }
+        }
+
+        public void DetectFinnish()
+        {
+            System.Drawing.Color currentPosOnMap = game.roadBitmap.GetPixel((int)posX, (int)posY);
+            if (currentPosOnMap.B == 255)
+            {
+                if(nextCheckpoint == lastCheckpoint)
+                {
+                    nextCheckpoint = 255;
+                    lapsDone++;
+                    if (lapsDone == 3)
+                    {
+                        (WinScreen.Show(name));
+                        game.Hide();
+                    }
+                }
+            }
         }
 
 
@@ -216,15 +275,23 @@ namespace NHLRacegame
 
         private void CalculateCoordinates()
         {
+
             double deltaX = Math.Cos(rotation / 180 * Math.PI);
             double deltaY = Math.Sin(rotation / 180 * Math.PI);
 
             double prevPosX = posX;
             double prevPosY = posY;
 
-            posX += deltaX * speed;
-            posY += deltaY * speed;
-
+            if (!isInPitstop)
+            {
+                posX += deltaX * speed;
+                posY += deltaY * speed;
+            }
+            else
+            {
+                posX += deltaX * speed * 0.6;
+                posY += deltaY * speed * 0.6;
+            }
             HandleCollisions(posX, posY, prevPosX, prevPosY);
 
         }
@@ -252,7 +319,7 @@ namespace NHLRacegame
             double frontInverseWidth;
             double backInverseWidth;
 
-            /*
+            
             if (speed < 0)
             {
                 frontInverseWidth = 5;
@@ -269,19 +336,19 @@ namespace NHLRacegame
                 frontInverseWidth = 4;
                 backInverseWidth = 4;
             }
-            */
+            
 
-            double frontRightX = frontMiddleX + (width / 4 * Math.Cos(rot + Math.PI * .5));
-            double frontRightY = frontMiddleY + (width / 4 * Math.Sin(rot + Math.PI * .5));
+            double frontRightX = frontMiddleX + (width / frontInverseWidth * Math.Cos(rot + Math.PI * .5));
+            double frontRightY = frontMiddleY + (width / frontInverseWidth * Math.Sin(rot + Math.PI * .5));
 
-            double frontLeftX = frontMiddleX + (width / 4 * -Math.Cos(rot + Math.PI * .5));
-            double frontLeftY = frontMiddleY + (width / 4 * -Math.Sin(rot + Math.PI * .5));
+            double frontLeftX = frontMiddleX + (width / frontInverseWidth * -Math.Cos(rot + Math.PI * .5));
+            double frontLeftY = frontMiddleY + (width / frontInverseWidth * -Math.Sin(rot + Math.PI * .5));
 
-            double backRightX = backMiddleX + (width / 4 * Math.Cos(rot + Math.PI * .5));
-            double backRightY = backMiddleY + (width / 4 * Math.Sin(rot + Math.PI * .5));
+            double backRightX = backMiddleX + (width / backInverseWidth * Math.Cos(rot + Math.PI * .5));
+            double backRightY = backMiddleY + (width / backInverseWidth * Math.Sin(rot + Math.PI * .5));
 
-            double backLeftX = backMiddleX + (width / 4 * -Math.Cos(rot + Math.PI * .5));
-            double backLeftY = backMiddleY + (width / 4 * -Math.Sin(rot + Math.PI * .5));
+            double backLeftX = backMiddleX + (width / backInverseWidth * -Math.Cos(rot + Math.PI * .5));
+            double backLeftY = backMiddleY + (width / backInverseWidth * -Math.Sin(rot + Math.PI * .5));
 
 
             if (!game.isPositionOnRoad(frontLeftX, frontLeftY) || !game.isPositionOnRoad(frontRightX, frontRightY) || !game.isPositionOnRoad(backLeftX, backLeftY) || !game.isPositionOnRoad(backRightX, backRightY))
@@ -333,7 +400,7 @@ namespace NHLRacegame
         {
 
             
-            return Math.Abs(5d * (speed / (Math.Pow(speed, 2) + 1))); // Degrees for every 1/60th of a second.
+            return Math.Abs(7d * (speed / (Math.Pow(speed, 2) + 1))); // Degrees for every 1/60th of a second.
         }
 
 
@@ -395,6 +462,8 @@ namespace NHLRacegame
         {
             return RotationSpeed() * 1.3;
         }
+
+        
 
         //abc
     }

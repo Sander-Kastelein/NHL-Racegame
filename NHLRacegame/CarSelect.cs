@@ -19,6 +19,8 @@ namespace NHLRacegame
             InitializeComponent();
             BackgroundImage = Image.FromFile(Path.Combine(Environment.CurrentDirectory, "titelbackground.bmp"));
 
+            (new Game()).Show();
+
         }
     }
 }

@@ -18,6 +18,7 @@ namespace NHLRacegame
         List<ISprite> drawList = new List<ISprite>();
         public Bitmap roadBitmap;
 
+
         public Game()
         {
             InitializeComponent();
@@ -32,6 +33,7 @@ namespace NHLRacegame
             );
 
             Image roadImage = Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Racemap.bmp"));
+            BackgroundImage = Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Racemapv3.bmp"));
             roadBitmap = new Bitmap(roadImage);
             BackgroundImage = roadImage;
 
@@ -63,7 +65,8 @@ namespace NHLRacegame
                 if (iy >= roadBitmap.Height) return false;
                 if (ix >= roadBitmap.Width) return false;
 
-                return roadBitmap.GetPixel((int)Math.Round(x), (int)Math.Round(y)).R > 0;
+                Color pixel = roadBitmap.GetPixel((int)Math.Round(x), (int)Math.Round(y));
+                return pixel.R > 0 || pixel.B > 0 || pixel.G > 0;
             }
             catch (Exception e)
             {
@@ -99,12 +102,14 @@ namespace NHLRacegame
         public void Init()
         {
             Player p = new Player(this);
+            p.name = "Player 1";
             p.rotation = -90;
             p.posX = 970;
             p.posY = 680;
             drawList.Add(p);
             
             Player p2 = new Player(this);
+            p.name = "Player 2";
             p2.rotation = -90;
             p2.posX = 990;
             p2.posY = 680;
