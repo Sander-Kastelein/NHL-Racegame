@@ -65,7 +65,7 @@ namespace NHLRacegame
         {
             this.game = game;
             // Init
-            string path = Path.Combine(Environment.CurrentDirectory, "car.bmp");
+            string path = Path.Combine(Environment.CurrentDirectory, "car.png");
 
             bitmap = Bitmap.FromFile(path);
 
@@ -130,7 +130,6 @@ namespace NHLRacegame
 
         public void DetectFinish()
         {
-            Console.WriteLine(name + ": laps done: " + lapsDone);
 
             System.Drawing.Color currentPosOnMap = game.roadBitmap.GetPixel((int)posX, (int)posY);
             if (currentPosOnMap.B == 255 && currentPosOnMap.R == 0 && currentPosOnMap.G == 0)
@@ -139,10 +138,12 @@ namespace NHLRacegame
                 {
                     nextCheckpoint = 255;
                     lapsDone++;
-                    if (lapsDone == 3)
+                    
+                    if (lapsDone == 1)
                     {
-                        (new WinScreen(name)).Show();
-                        game.Hide();
+                        game.addNyan();
+                        //(new WinScreen(name)).Show();
+                        //game.Hide();
                     }
                 }
             }
@@ -269,15 +270,19 @@ namespace NHLRacegame
 
             g.RotateTransform(-(float)rotation);
 
-            Font drawFont = new Font("Arial", 24);
-            SolidBrush drawBrush = new SolidBrush(System.Drawing.Color.Black);
-            
-
             g.ResetTransform();
             g.RotateTransform(0);
 
+            Font drawFontFuel = new Font("Arial", 14);
+            SolidBrush drawBrushFuel = new SolidBrush(System.Drawing.Color.Black);
+            int drawFuel = (int)Math.Ceiling(fuel);
+            PointF drawPointFuel = new PointF(5 + interfaceOffset, 768 - 35);
+            g.DrawString((drawFuel < 100 ? "0" : "") + (drawFuel < 10 ? "0" : "") + drawFuel.ToString(), drawFontFuel, drawBrushFuel, drawPointFuel);
+
+            Font drawFont = new Font("Arial", 24);
+            SolidBrush drawBrush = new SolidBrush(System.Drawing.Color.Black);
             PointF drawPoint = new PointF(157 + interfaceOffset, 768-65);
-            int displaySpeed = (int)Math.Abs(Math.Ceiling(speed * 60));
+            int displaySpeed = (int)Math.Abs(Math.Round(speed * 60));
             g.DrawString((displaySpeed < 100 ? "0" : "") + (displaySpeed < 10 ? "0" : "") +  displaySpeed.ToString(), drawFont, drawBrush, drawPoint);
         }
 

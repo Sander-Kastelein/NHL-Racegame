@@ -19,6 +19,8 @@ namespace NHLRacegame
         public Bitmap roadBitmap;
 
 
+        public List<PictureBox> nyans = new List<PictureBox>();
+
         public Game()
         {
             InitializeComponent();
@@ -26,9 +28,7 @@ namespace NHLRacegame
             SetStyle(
                 ControlStyles.UserPaint |
                 ControlStyles.AllPaintingInWmPaint |
-                ControlStyles.DoubleBuffer |
-                ControlStyles.OptimizedDoubleBuffer |
-                ControlStyles.AllPaintingInWmPaint,
+                ControlStyles.OptimizedDoubleBuffer,
                 true
             );
 
@@ -38,7 +38,9 @@ namespace NHLRacegame
             //BackgroundImage = roadImage;
 
 
+            
 
+            
      
             
 
@@ -50,6 +52,36 @@ namespace NHLRacegame
             GameTimer.Start();
 
             Init();
+        }
+
+        public void goNyan()
+        {
+            foreach(PictureBox nyan in nyans)
+            {
+                nyan.Left += 1;
+            }
+        }
+
+        public void addNyan()
+        {
+            Image nyanImage = Image.FromFile(Path.Combine(Environment.CurrentDirectory, "nyan.gif"));
+
+            Random rnd = new Random();
+            for (int i = 0; i < 768; i += 56)
+            {
+                PictureBox nyan = new PictureBox();
+                nyan.Image = nyanImage;
+                nyan.Height = 28;
+                nyan.Width = 72;
+                nyan.BackColor = Color.FromArgb(230,226,253);
+                nyan.Left = -nyan.Width - (rnd.Next(0, 200)) ;
+                nyan.Top = i;
+                nyans.Add(nyan);
+            }
+            foreach(PictureBox nyana in nyans)
+            {
+                this.Controls.Add(nyana);
+            }
         }
 
         public bool isPositionOnRoad(double x, double y)
@@ -128,7 +160,8 @@ namespace NHLRacegame
             foreach (ISprite drawItem in drawList)
             {
                 drawItem.Loop();
-            } 
+            }
+            goNyan();
         }
   
 
