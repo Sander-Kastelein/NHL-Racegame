@@ -139,11 +139,10 @@ namespace NHLRacegame
                     nextCheckpoint = 255;
                     lapsDone++;
                     
-                    if (lapsDone == 1)
+                    if (lapsDone == 3)
                     {
-                        game.addNyan();
-                        //(new WinScreen(name)).Show();
-                        //game.Hide();
+                        (new WinScreen(name)).Show();
+                        game.Hide();
                     }
                 }
             }
@@ -276,7 +275,7 @@ namespace NHLRacegame
             Font drawFontFuel = new Font("Arial", 14);
             SolidBrush drawBrushFuel = new SolidBrush(System.Drawing.Color.Black);
             int drawFuel = (int)Math.Ceiling(fuel);
-            PointF drawPointFuel = new PointF(5 + interfaceOffset, 768 - 35);
+            PointF drawPointFuel = new PointF(10 + interfaceOffset, 768 - 35);
             g.DrawString((drawFuel < 100 ? "0" : "") + (drawFuel < 10 ? "0" : "") + drawFuel.ToString(), drawFontFuel, drawBrushFuel, drawPointFuel);
 
             Font drawFont = new Font("Arial", 24);
