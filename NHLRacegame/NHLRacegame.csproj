@@ -109,6 +109,9 @@
     <Content Include="Racemap.bmp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Racemapv3.bmp">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="titelbackground.bmp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
