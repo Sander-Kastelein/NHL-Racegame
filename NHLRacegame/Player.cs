@@ -144,9 +144,11 @@ namespace NHLRacegame
                     nextCheckpoint = 255;
                     lapsDone++;
                     
-                    if (lapsDone == 3)
+                    if (lapsDone == 1)
                     {
-                        (new WinScreen(name)).Show();
+                        Form winScreen = new WinScreen(name);
+                        winScreen.BackgroundImage = Image.FromFile(Path.Combine(Environment.CurrentDirectory, this.name.Replace(" ","") + "wins.bmp"));
+                        winScreen.Show();
                         game.Hide();
                     }
                 }

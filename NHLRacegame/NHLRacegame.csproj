@@ -118,6 +118,12 @@
     <Content Include="nyan.gif">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Player1wins.bmp">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Player2wins.bmp">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Racemap.bmp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

@@ -66,3 +66,5 @@ C:\Users\sander\Documents\Visual Studio 2012\Projects\NHL-racegame\NHLRacegame\o
 C:\Users\sander\Documents\Visual Studio 2012\Projects\NHL-racegame\NHLRacegame\bin\Debug\car.png
 C:\Users\sander\Documents\Visual Studio 2012\Projects\NHL-racegame\NHLRacegame\bin\Debug\nyan.gif
 C:\Users\sander\Documents\Visual Studio 2012\Projects\NHL-racegame\NHLRacegame\bin\Debug\start.wav
+C:\Users\sander\Documents\Visual Studio 2012\Projects\NHL-racegame\NHLRacegame\bin\Debug\Player1wins.bmp
+C:\Users\sander\Documents\Visual Studio 2012\Projects\NHL-racegame\NHLRacegame\bin\Debug\Player2wins.bmp

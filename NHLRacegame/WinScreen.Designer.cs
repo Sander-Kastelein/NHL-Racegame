@@ -28,48 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.winner = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
-            // winner
-            // 
-            this.winner.AutoSize = true;
-            this.winner.Location = new System.Drawing.Point(319, 256);
-            this.winner.Name = "winner";
-            this.winner.Size = new System.Drawing.Size(35, 13);
-            this.winner.TabIndex = 0;
-            this.winner.Text = "label1";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(261, 256);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(44, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Winner:";
             // 
             // WinScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1024, 768);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.winner);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "WinScreen";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Label winner;
-        private System.Windows.Forms.Label label1;
 
 
     }

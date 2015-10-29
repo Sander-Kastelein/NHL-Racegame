@@ -17,8 +17,6 @@ namespace NHLRacegame
         public WinScreen(string winnerName)
         {
             InitializeComponent();
-            BackgroundImage = Image.FromFile(Path.Combine(Environment.CurrentDirectory, "titelbackground.bmp"));
-            winner.Text = winnerName;
 
         }
     }
