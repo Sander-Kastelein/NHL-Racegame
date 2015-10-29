@@ -25,7 +25,6 @@ C:\Users\sander\Documents\Visual Studio 2012\Projects\NHL-racegame\NHLRacegame\N
 C:\Users\sander\Documents\Visual Studio 2012\Projects\NHL-racegame\NHLRacegame\bin\Debug\NHLRacegame.exe.config
 C:\Users\sander\Documents\Visual Studio 2012\Projects\NHL-racegame\NHLRacegame\obj\Debug\NHLRacegame.exe
 C:\Users\sander\Documents\Visual Studio 2012\Projects\NHL-racegame\NHLRacegame\obj\Debug\NHLRacegame.pdb
-C:\Users\sander\Documents\Visual Studio 2012\Projects\NHL-racegame\NHLRacegame\bin\Debug\car.jpg
 C:\Users\sander\Documents\Visual Studio 2012\Projects\NHL-racegame\NHLRacegame\bin\Debug\titelbackground.bmp
 C:\Users\sander\Documents\Visual Studio 2012\Projects\NHL-racegame\NHLRacegame\bin\Debug\NHLRacegame.exe
 C:\Users\sander\Documents\Visual Studio 2012\Projects\NHL-racegame\NHLRacegame\bin\Debug\NHLRacegame.pdb
@@ -64,3 +63,4 @@ C:\Users\Blanc\NHL-Racegame\NHLRacegame\obj\Debug\NHLRacegame.csproj.GenerateRes
 C:\Users\sander\Documents\Visual Studio 2012\Projects\NHL-racegame\NHLRacegame\obj\Debug\NHLRacegame.CarSelect.resources
 C:\Users\sander\Documents\Visual Studio 2012\Projects\NHL-racegame\NHLRacegame\bin\Debug\Racemapv3.bmp
 C:\Users\sander\Documents\Visual Studio 2012\Projects\NHL-racegame\NHLRacegame\obj\Debug\NHLRacegame.WinScreen.resources
+C:\Users\sander\Documents\Visual Studio 2012\Projects\NHL-racegame\NHLRacegame\bin\Debug\car.bmp

@@ -20,6 +20,7 @@ namespace NHLRacegame
         public int width, height;
 
         public string name;
+        public int interfaceOffset = 0;
 
         public double accelerationSpeedConstant;
         public double breakSpeedConstant;
@@ -56,12 +57,15 @@ namespace NHLRacegame
         public int lastCheckpoint = 253;
 
         public Image bitmap;
+        Label lapsLabel;
+
+
 
         public Player(Game game)
         {
             this.game = game;
             // Init
-            string path = Path.Combine(Environment.CurrentDirectory, "car.jpg");
+            string path = Path.Combine(Environment.CurrentDirectory, "car.bmp");
 
             bitmap = Bitmap.FromFile(path);
 
@@ -78,7 +82,6 @@ namespace NHLRacegame
             width = bitmap.Width;
             height = bitmap.Height;
             breakSpeedConstant = 0.04;
-
         }
 
         public void Loop()
@@ -266,13 +269,16 @@ namespace NHLRacegame
 
             g.RotateTransform(-(float)rotation);
 
-            Font drawFont = new Font("Arial", 10);
-            SolidBrush drawBrush = new SolidBrush(System.Drawing.Color.Orange);
-            PointF drawPoint = new PointF(0,0);
-            g.DrawString("Fuel: "+fuel.ToString(), drawFont, drawBrush, drawPoint);
+            Font drawFont = new Font("Arial", 24);
+            SolidBrush drawBrush = new SolidBrush(System.Drawing.Color.Black);
+            
 
             g.ResetTransform();
             g.RotateTransform(0);
+
+            PointF drawPoint = new PointF(157 + interfaceOffset, 768-65);
+            int displaySpeed = (int)Math.Abs(Math.Ceiling(speed * 60));
+            g.DrawString((displaySpeed < 100 ? "0" : "") + (displaySpeed < 10 ? "0" : "") +  displaySpeed.ToString(), drawFont, drawBrush, drawPoint);
         }
 
         private void CalculateCoordinates()

@@ -109,6 +109,7 @@ namespace NHLRacegame
             
             Player p2 = new Player(this);
             p2.name = "Player 2";
+            p2.interfaceOffset = 270;
             p2.rotation = -90;
             p2.posX = 990;
             p2.posY = 680;
