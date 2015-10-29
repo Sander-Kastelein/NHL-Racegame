@@ -51,13 +51,14 @@ namespace NHLRacegame
 
         // Stats
         public double fuel = 100;
+        public int pitsstopsDone = 0;
 
         public int lapsDone = 0;
         public int nextCheckpoint = 255;
         public int lastCheckpoint = 253;
 
         public Image bitmap;
-        Label lapsLabel;
+        
 
 
 
@@ -101,6 +102,10 @@ namespace NHLRacegame
             System.Drawing.Color currentPosOnMap = game.roadBitmap.GetPixel((int)posX, (int)posY);
             if (currentPosOnMap.G == 255 && currentPosOnMap.B == 0 && currentPosOnMap.R == 0)
             {
+                if (!isInPitstop)
+                {
+                    pitsstopsDone++;
+                }
                 isInPitstop = true;
             }
             else
@@ -283,6 +288,18 @@ namespace NHLRacegame
             PointF drawPoint = new PointF(157 + interfaceOffset, 768-65);
             int displaySpeed = (int)Math.Abs(Math.Round(speed * 60));
             g.DrawString((displaySpeed < 100 ? "0" : "") + (displaySpeed < 10 ? "0" : "") +  displaySpeed.ToString(), drawFont, drawBrush, drawPoint);
+
+            Font drawFontLaps = new Font("Arial", 14);
+            SolidBrush drawBrushLaps = new SolidBrush(System.Drawing.Color.Black);
+            PointF drawPointLaps = new PointF(116 + interfaceOffset, 768 - 37);
+            g.DrawString(lapsDone.ToString(), drawFontLaps, drawBrushLaps, drawPointLaps);
+
+            Font drawFontPit = new Font("Arial", 14);
+            SolidBrush drawBrushPit = new SolidBrush(System.Drawing.Color.Black);
+            PointF drawPointPit = new PointF(100 + interfaceOffset, 768 - 57);
+            g.DrawString(pitsstopsDone.ToString(), drawFontPit, drawBrushPit, drawPointPit);
+        
+        
         }
 
         private void CalculateCoordinates()
