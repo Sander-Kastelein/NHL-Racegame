@@ -71,7 +71,7 @@ namespace NHLRacegame
                 {
                     // Start Game
                     Hide();
-                    (new Game()).Show();
+                    (new CarSelect()).Show();
                 }
                 if (selectedButton == 1)
                 {
