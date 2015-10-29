@@ -108,7 +108,7 @@ namespace NHLRacegame
         public void Tick(Object sender, EventArgs e)
         {
             
-            if(!isPaused) Loop();
+            
             if (isBegin)
             {
                 isBegin = false;
@@ -135,7 +135,7 @@ namespace NHLRacegame
             {
                 startLabel.Hide();
             }
-
+            if (!isPaused) Loop();
             Invalidate();
         }
 
