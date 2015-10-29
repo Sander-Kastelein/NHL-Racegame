@@ -70,7 +70,7 @@ namespace NHLRacegame
                 if (selectedButton == 0)
                 {
                     // Start Game
-                    Hide();
+                    //Hide();
                     (new CarSelect()).Show();
                 }
                 if (selectedButton == 1)

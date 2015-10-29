@@ -146,7 +146,8 @@ namespace NHLRacegame
                     
                     if (lapsDone == 1)
                     {
-                        Form winScreen = new WinScreen(name);
+                        game.stopGame();
+                        Form winScreen = new WinScreen();
                         winScreen.BackgroundImage = Image.FromFile(Path.Combine(Environment.CurrentDirectory, this.name.Replace(" ","") + "wins.bmp"));
                         winScreen.Show();
                         game.Hide();

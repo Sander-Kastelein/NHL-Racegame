@@ -14,10 +14,20 @@ namespace NHLRacegame
     public partial class WinScreen : Form
     {
 
-        public WinScreen(string winnerName)
+        public WinScreen()
         {
             InitializeComponent();
 
+            System.Media.SoundPlayer player = new System.Media.SoundPlayer();
+            player.SoundLocation = Path.Combine(Environment.CurrentDirectory, "win.wav");
+            player.Play();
+            
+            this.KeyDown += new KeyEventHandler(OnKeyDown);
+        }
+
+        public void OnKeyDown(object sender, KeyEventArgs args)
+        {
+            this.Hide();
         }
     }
 }

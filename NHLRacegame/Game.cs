@@ -20,6 +20,12 @@ namespace NHLRacegame
         public bool isPaused = true;
         public DateTime start;
         public bool isBegin = true;
+        public bool isEnd = false;
+        public DateTime disableNyanAt = DateTime.Now;
+        public bool isNyanPlaying = false;
+
+        public System.Media.SoundPlayer player;
+        public System.Media.SoundPlayer nyanPlayer;
 
         public List<PictureBox> nyans = new List<PictureBox>();
 
@@ -39,7 +45,16 @@ namespace NHLRacegame
             Image roadImage = Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Racemap.bmp"));
             BackgroundImage = Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Racemapv3.bmp"));
             roadBitmap = new Bitmap(roadImage);
-            //BackgroundImage = roadImage;
+            //BackgroundImage = roadImage; //DEBUG
+
+            player = new System.Media.SoundPlayer();
+            player.SoundLocation = Path.Combine(Environment.CurrentDirectory, "music.wav");
+            player.Play();
+
+
+            nyanPlayer = new System.Media.SoundPlayer();
+            nyanPlayer.SoundLocation = Path.Combine(Environment.CurrentDirectory, "nyan.wav");
+
      
             Paint += new PaintEventHandler(PaintHandler);
 
@@ -61,32 +76,47 @@ namespace NHLRacegame
 
         public void goNyan()
         {
+            if (DateTime.Now.Subtract(disableNyanAt).Seconds >= 0 && isNyanPlaying)
+            {
+                nyanPlayer.Stop();
+                isNyanPlaying = false;
+                player.Play();
+
+            }
+
             foreach(PictureBox nyan in nyans)
             {
-                nyan.Left += 1;
+                nyan.Left += 2;
             }
         }
 
         public void addNyan()
         {
+            if (isNyanPlaying) return;
             Image nyanImage = Image.FromFile(Path.Combine(Environment.CurrentDirectory, "nyan.gif"));
 
+            player.Stop();
+            nyanPlayer.Play();
+            isNyanPlaying = true;
+
             Random rnd = new Random();
-            for (int i = 0; i < 768; i += 56)
-            {
+ 
                 PictureBox nyan = new PictureBox();
                 nyan.Image = nyanImage;
                 nyan.Height = 28;
                 nyan.Width = 72;
                 nyan.BackColor = Color.FromArgb(230,226,253);
                 nyan.Left = -nyan.Width - (rnd.Next(0, 200)) ;
-                nyan.Top = i;
+                nyan.Top = (rnd.Next(0, 740));
                 nyans.Add(nyan);
-            }
+            
             foreach(PictureBox nyana in nyans)
             {
                 this.Controls.Add(nyana);
             }
+
+            disableNyanAt = DateTime.Now.AddSeconds(16);
+
         }
 
         public bool isPositionOnRoad(double x, double y)
@@ -114,11 +144,13 @@ namespace NHLRacegame
 
         public void FrameTick(Object sender, EventArgs e)
         {
+            if (isEnd) return;
             Invalidate();
         }
 
         public void Tick(Object sender, EventArgs e)
         {
+            if (isEnd) return;
             if (isBegin)
             {
                 isBegin = false;
@@ -144,6 +176,7 @@ namespace NHLRacegame
             if ((DateTime.Now).Subtract(start).Seconds == 4)
             {
                 startLabel.Hide();
+                player.PlayLooping();
             }
             if (!isPaused) Loop();
         }
@@ -159,9 +192,12 @@ namespace NHLRacegame
             {
                 drawItem.Draw(g);
             }
-            
+        }
 
-
+        public void stopGame()
+        {
+            isEnd = true;
+            player.Stop();
         }
 
         public void Init()
@@ -196,8 +232,18 @@ namespace NHLRacegame
                 drawItem.Loop();
             }
             goNyan();
+            powerUp();
         }
-  
+
+        public void powerUp()
+        {
+            Random rand = new Random();
+            if (rand.Next(0, 100 * 60) == 0)
+            {
+                addNyan(); // Niet echt een power-up maar wel leuk :)
+            }
+        }
+
 
     }
 }
