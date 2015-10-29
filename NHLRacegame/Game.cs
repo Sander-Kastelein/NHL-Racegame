@@ -24,11 +24,13 @@ namespace NHLRacegame
         public Game()
         {
             InitializeComponent();
-            
+
             SetStyle(
                 ControlStyles.UserPaint |
                 ControlStyles.AllPaintingInWmPaint |
-                ControlStyles.OptimizedDoubleBuffer,
+                ControlStyles.DoubleBuffer |
+                ControlStyles.OptimizedDoubleBuffer |
+                ControlStyles.AllPaintingInWmPaint,
                 true
             );
 
@@ -36,14 +38,7 @@ namespace NHLRacegame
             BackgroundImage = Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Racemapv3.bmp"));
             roadBitmap = new Bitmap(roadImage);
             //BackgroundImage = roadImage;
-
-
-            
-
-            
      
-            
-
             Paint += new PaintEventHandler(PaintHandler);
 
             Timer GameTimer = new Timer();
