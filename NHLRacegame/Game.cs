@@ -35,7 +35,7 @@ namespace NHLRacegame
             Image roadImage = Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Racemap.bmp"));
             BackgroundImage = Image.FromFile(Path.Combine(Environment.CurrentDirectory, "Racemapv3.bmp"));
             roadBitmap = new Bitmap(roadImage);
-            BackgroundImage = roadImage;
+            //BackgroundImage = roadImage;
 
 
 
@@ -70,7 +70,6 @@ namespace NHLRacegame
             }
             catch (Exception e)
             {
-
                 return false;
             }
         }
@@ -109,7 +108,7 @@ namespace NHLRacegame
             drawList.Add(p);
             
             Player p2 = new Player(this);
-            p.name = "Player 2";
+            p2.name = "Player 2";
             p2.rotation = -90;
             p2.posX = 990;
             p2.posY = 680;

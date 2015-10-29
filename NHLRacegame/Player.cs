@@ -119,24 +119,26 @@ namespace NHLRacegame
         public void DetectCheckpoints()
         {
             System.Drawing.Color currentPosOnMap = game.roadBitmap.GetPixel((int)posX, (int)posY);
-            if (currentPosOnMap.R == nextCheckpoint)
+            if (currentPosOnMap.R == nextCheckpoint && currentPosOnMap.B == 0 && currentPosOnMap.G == 0)
             {
                 nextCheckpoint--;
             }
         }
 
-        public void DetectFinnish()
+        public void DetectFinish()
         {
+            Console.WriteLine(name + ": laps done: " + lapsDone);
+
             System.Drawing.Color currentPosOnMap = game.roadBitmap.GetPixel((int)posX, (int)posY);
-            if (currentPosOnMap.B == 255)
+            if (currentPosOnMap.B == 255 && currentPosOnMap.R == 0 && currentPosOnMap.G == 0)
             {
-                if(nextCheckpoint == lastCheckpoint)
+                if(nextCheckpoint == lastCheckpoint-1)
                 {
                     nextCheckpoint = 255;
                     lapsDone++;
                     if (lapsDone == 3)
                     {
-                        (WinScreen.Show(name));
+                        (new WinScreen(name)).Show();
                         game.Hide();
                     }
                 }
@@ -427,7 +429,6 @@ namespace NHLRacegame
             {
                 double oppositeForce = speed * mass;
                 double accelerationSpeed = accelerationSpeedConstant / (oppositeForce + 1);
-                Console.WriteLine(speed);
                 return accelerationSpeed;
             }
             //return accelerationSpeedConstant;
