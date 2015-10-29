@@ -107,8 +107,6 @@ namespace NHLRacegame
 
         public void Tick(Object sender, EventArgs e)
         {
-            
-            
             if (isBegin)
             {
                 isBegin = false;
