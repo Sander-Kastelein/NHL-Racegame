@@ -49,15 +49,22 @@ namespace NHLRacegame
 
             player = new System.Media.SoundPlayer();
             player.SoundLocation = Path.Combine(Environment.CurrentDirectory, "music.wav");
-            player.Play();
-
+            player.LoadAsync();
 
             nyanPlayer = new System.Media.SoundPlayer();
             nyanPlayer.SoundLocation = Path.Combine(Environment.CurrentDirectory, "nyan.wav");
-
+            nyanPlayer.LoadAsync();
      
             Paint += new PaintEventHandler(PaintHandler);
 
+            
+
+
+            Init();
+        }
+
+        public void startGame()
+        {
             Timer GameTimer = new Timer();
             GameTimer.Interval = 10;
             GameTimer.Tick += new EventHandler(Tick);
@@ -71,7 +78,6 @@ namespace NHLRacegame
             FrameTimer.Start();
 
 
-            Init();
         }
 
         public void goNyan()
@@ -80,7 +86,7 @@ namespace NHLRacegame
             {
                 nyanPlayer.Stop();
                 isNyanPlaying = false;
-                player.Play();
+                player.PlayLooping();
 
             }
 
@@ -106,6 +112,7 @@ namespace NHLRacegame
                 nyan.Height = 28;
                 nyan.Width = 72;
                 nyan.BackColor = Color.FromArgb(230,226,253);
+                // nyan.BackColor = Color.Transparent; // lagg fest 
                 nyan.Left = -nyan.Width - (rnd.Next(0, 200)) ;
                 nyan.Top = (rnd.Next(0, 740));
                 nyans.Add(nyan);
@@ -154,9 +161,9 @@ namespace NHLRacegame
             if (isBegin)
             {
                 isBegin = false;
-                System.Media.SoundPlayer player = new System.Media.SoundPlayer();
-                player.SoundLocation = Path.Combine(Environment.CurrentDirectory, "start.wav");
-                player.Play();
+                System.Media.SoundPlayer py = new System.Media.SoundPlayer();
+                py.SoundLocation = Path.Combine(Environment.CurrentDirectory, "start.wav");
+                py.Play();
                 start = DateTime.Now;
             }
 
@@ -172,11 +179,11 @@ namespace NHLRacegame
             {
                 startLabel.Text = "0";
                 isPaused = false;
+                player.PlayLooping();
             }
             if ((DateTime.Now).Subtract(start).Seconds == 4)
             {
                 startLabel.Hide();
-                player.PlayLooping();
             }
             if (!isPaused) Loop();
         }
@@ -202,14 +209,14 @@ namespace NHLRacegame
 
         public void Init()
         {
-            Player p = new Player(this);
+            Player p = new Player(this, "david");
             p.name = "Player 1";
             p.rotation = -90;
             p.posX = 970;
             p.posY = 680;
             drawList.Add(p);
             
-            Player p2 = new Player(this);
+            Player p2 = new Player(this, "jop");
             p2.name = "Player 2";
             p2.interfaceOffset = 270;
             p2.rotation = -90;
@@ -238,7 +245,7 @@ namespace NHLRacegame
         public void powerUp()
         {
             Random rand = new Random();
-            if (rand.Next(0, 100 * 60) == 0)
+            if (rand.Next(0, 75 * 60) == 0) // elke 75 seconden 50% kans op een Nyan kat
             {
                 addNyan(); // Niet echt een power-up maar wel leuk :)
             }

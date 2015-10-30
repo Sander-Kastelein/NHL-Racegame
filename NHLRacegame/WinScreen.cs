@@ -27,7 +27,10 @@ namespace NHLRacegame
 
         public void OnKeyDown(object sender, KeyEventArgs args)
         {
-            this.Hide();
+            if (args.KeyCode == Keys.Space)
+            {
+                this.Hide();
+            }
         }
     }
 }

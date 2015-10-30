@@ -14,13 +14,27 @@ namespace NHLRacegame
     public partial class CarSelect : Form
     {
 
+        Game game;
+
         public CarSelect()
         {
             InitializeComponent();
-            BackgroundImage = Image.FromFile(Path.Combine(Environment.CurrentDirectory, "titelbackground.bmp"));
+            BackgroundImage = Image.FromFile(Path.Combine(Environment.CurrentDirectory, "selectscreen.png"));
+            game = new Game();
 
-            (new Game()).Show();
 
+            this.KeyDown += OnKeyDown;
+
+        }
+
+        public void OnKeyDown(Object sender, KeyEventArgs args)
+        {
+            if (args.KeyCode == Keys.Space)
+            {
+                game.Show();
+                game.startGame();
+                this.Hide();
+            }
         }
     }
 }

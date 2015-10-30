@@ -32,7 +32,7 @@ namespace NHLRacegame
         public double minSpeed;
         public double minSpeedWhenFuelIsEmpty;
 
-        public double fullSpeedFuelUsage = 0.05;
+        public double fullSpeedFuelUsage = 0.07;
         public int mass = 30;
 
         // Position
@@ -62,12 +62,11 @@ namespace NHLRacegame
 
 
 
-        public Player(Game game)
+        public Player(Game game, string character)
         {
             this.game = game;
             // Init
-            string path = Path.Combine(Environment.CurrentDirectory, "car.png");
-
+            string path = Path.Combine(Environment.CurrentDirectory, "car_"+character+".png");
             bitmap = Bitmap.FromFile(path);
 
             posX = 0;
@@ -80,8 +79,10 @@ namespace NHLRacegame
             accelerationSpeedConstant = 0.2;
             accelerateBelowZeroConstant = 0.02;
             decelerationSpeedConstant = 0.005;
+
             width = bitmap.Width;
             height = bitmap.Height;
+            
             breakSpeedConstant = 0.04;
         }
 
@@ -144,7 +145,7 @@ namespace NHLRacegame
                     nextCheckpoint = 255;
                     lapsDone++;
                     
-                    if (lapsDone == 1)
+                    if (lapsDone == 3)
                     {
                         game.stopGame();
                         Form winScreen = new WinScreen();

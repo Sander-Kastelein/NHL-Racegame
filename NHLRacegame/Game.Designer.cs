@@ -44,7 +44,7 @@
             // startLabel
             // 
             this.startLabel.AutoSize = true;
-            this.startLabel.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.startLabel.BackColor = System.Drawing.Color.Transparent;
             this.startLabel.Font = new System.Drawing.Font("MS Reference Sans Serif", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.startLabel.ForeColor = System.Drawing.Color.DarkRed;
             this.startLabel.Location = new System.Drawing.Point(443, 323);
