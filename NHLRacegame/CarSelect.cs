@@ -22,6 +22,12 @@ namespace NHLRacegame
             BackgroundImage = Image.FromFile(Path.Combine(Environment.CurrentDirectory, "selectscreen.png"));
             game = new Game();
 
+            this.Size = new Size(1024, 768);
+            this.Width = 1024;
+            this.Height = 768;
+            this.Left = 0;
+            this.Top = 0;
+
 
             this.KeyDown += OnKeyDown;
 

@@ -74,3 +74,29 @@ C:\Users\sander\Documents\Visual Studio 2012\Projects\NHL-racegame\NHLRacegame\b
 C:\Users\sander\Documents\Visual Studio 2012\Projects\NHL-racegame\NHLRacegame\bin\Debug\car_david.png
 C:\Users\sander\Documents\Visual Studio 2012\Projects\NHL-racegame\NHLRacegame\bin\Debug\car_jop.png
 C:\Users\sander\Documents\Visual Studio 2012\Projects\NHL-racegame\NHLRacegame\bin\Debug\selectscreen.png
+D:\Dropbox\Ruud\Gedeelde bestanden\NHL-Racegame\NHLRacegame\bin\Debug\NHLRacegame.exe.config
+D:\Dropbox\Ruud\Gedeelde bestanden\NHL-Racegame\NHLRacegame\obj\Debug\NHLRacegame.exe
+D:\Dropbox\Ruud\Gedeelde bestanden\NHL-Racegame\NHLRacegame\obj\Debug\NHLRacegame.pdb
+D:\Dropbox\Ruud\Gedeelde bestanden\NHL-Racegame\NHLRacegame\bin\Debug\car.png
+D:\Dropbox\Ruud\Gedeelde bestanden\NHL-Racegame\NHLRacegame\bin\Debug\car_david.png
+D:\Dropbox\Ruud\Gedeelde bestanden\NHL-Racegame\NHLRacegame\bin\Debug\car_jop.png
+D:\Dropbox\Ruud\Gedeelde bestanden\NHL-Racegame\NHLRacegame\bin\Debug\music.wav
+D:\Dropbox\Ruud\Gedeelde bestanden\NHL-Racegame\NHLRacegame\bin\Debug\nyan.gif
+D:\Dropbox\Ruud\Gedeelde bestanden\NHL-Racegame\NHLRacegame\bin\Debug\nyan.wav
+D:\Dropbox\Ruud\Gedeelde bestanden\NHL-Racegame\NHLRacegame\bin\Debug\Player1wins.bmp
+D:\Dropbox\Ruud\Gedeelde bestanden\NHL-Racegame\NHLRacegame\bin\Debug\Player2wins.bmp
+D:\Dropbox\Ruud\Gedeelde bestanden\NHL-Racegame\NHLRacegame\bin\Debug\Racemap.bmp
+D:\Dropbox\Ruud\Gedeelde bestanden\NHL-Racegame\NHLRacegame\bin\Debug\Racemapv3.bmp
+D:\Dropbox\Ruud\Gedeelde bestanden\NHL-Racegame\NHLRacegame\bin\Debug\selectscreen.png
+D:\Dropbox\Ruud\Gedeelde bestanden\NHL-Racegame\NHLRacegame\bin\Debug\start.wav
+D:\Dropbox\Ruud\Gedeelde bestanden\NHL-Racegame\NHLRacegame\bin\Debug\titelbackground.bmp
+D:\Dropbox\Ruud\Gedeelde bestanden\NHL-Racegame\NHLRacegame\bin\Debug\win.wav
+D:\Dropbox\Ruud\Gedeelde bestanden\NHL-Racegame\NHLRacegame\bin\Debug\NHLRacegame.exe
+D:\Dropbox\Ruud\Gedeelde bestanden\NHL-Racegame\NHLRacegame\bin\Debug\NHLRacegame.pdb
+D:\Dropbox\Ruud\Gedeelde bestanden\NHL-Racegame\NHLRacegame\obj\Debug\NHLRacegame.csprojResolveAssemblyReference.cache
+D:\Dropbox\Ruud\Gedeelde bestanden\NHL-Racegame\NHLRacegame\obj\Debug\NHLRacegame.CarSelect.resources
+D:\Dropbox\Ruud\Gedeelde bestanden\NHL-Racegame\NHLRacegame\obj\Debug\NHLRacegame.WinScreen.resources
+D:\Dropbox\Ruud\Gedeelde bestanden\NHL-Racegame\NHLRacegame\obj\Debug\NHLRacegame.Game.resources
+D:\Dropbox\Ruud\Gedeelde bestanden\NHL-Racegame\NHLRacegame\obj\Debug\NHLRacegame.StartScreen.resources
+D:\Dropbox\Ruud\Gedeelde bestanden\NHL-Racegame\NHLRacegame\obj\Debug\NHLRacegame.Properties.Resources.resources
+D:\Dropbox\Ruud\Gedeelde bestanden\NHL-Racegame\NHLRacegame\obj\Debug\NHLRacegame.csproj.GenerateResource.Cache

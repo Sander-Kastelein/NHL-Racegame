@@ -70,7 +70,7 @@ namespace NHLRacegame
             GameTimer.Tick += new EventHandler(Tick);
             GameTimer.Start();
 
-            int fps = 25; // Sanders arme laptop trekt geen 60FPS :( verander dit gerust naar 40-60 als je een i5 of i7 hebt
+            int fps = 60; // Sanders arme laptop trekt geen 60FPS :( verander dit gerust naar 40-60 als je een i5 of i7 hebt
 
             Timer FrameTimer = new Timer();
             FrameTimer.Interval = 1000 / fps;

@@ -24,6 +24,11 @@ namespace NHLRacegame
             buttons[0] = btn_start;
             buttons[1] = btn_exit;
 
+            this.Width = 1024;
+            this.Height = 768;
+            this.Top = 0;
+            this.Left = 0;
+
             BackgroundImage = Image.FromFile(Path.Combine(Environment.CurrentDirectory, "titelbackground.bmp"));
 
             SetSelectedButton(0);

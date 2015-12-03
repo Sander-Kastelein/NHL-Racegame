@@ -281,24 +281,24 @@ namespace NHLRacegame
             g.ResetTransform();
             g.RotateTransform(0);
 
-            Font drawFontFuel = new Font("Arial", 14);
+            Font drawFontFuel = new Font("Arial", 12);
             SolidBrush drawBrushFuel = new SolidBrush(System.Drawing.Color.Black);
             int drawFuel = (int)Math.Ceiling(fuel);
             PointF drawPointFuel = new PointF(10 + interfaceOffset, 768 - 35);
             g.DrawString((drawFuel < 100 ? "0" : "") + (drawFuel < 10 ? "0" : "") + drawFuel.ToString(), drawFontFuel, drawBrushFuel, drawPointFuel);
 
-            Font drawFont = new Font("Arial", 24);
+            Font drawFont = new Font("Arial", 20);
             SolidBrush drawBrush = new SolidBrush(System.Drawing.Color.Black);
             PointF drawPoint = new PointF(157 + interfaceOffset, 768-65);
             int displaySpeed = (int)Math.Abs(Math.Round(speed * 60));
             g.DrawString((displaySpeed < 100 ? "0" : "") + (displaySpeed < 10 ? "0" : "") +  displaySpeed.ToString(), drawFont, drawBrush, drawPoint);
 
-            Font drawFontLaps = new Font("Arial", 14);
+            Font drawFontLaps = new Font("Arial", 12);
             SolidBrush drawBrushLaps = new SolidBrush(System.Drawing.Color.Black);
             PointF drawPointLaps = new PointF(116 + interfaceOffset, 768 - 37);
             g.DrawString(lapsDone.ToString(), drawFontLaps, drawBrushLaps, drawPointLaps);
 
-            Font drawFontPit = new Font("Arial", 14);
+            Font drawFontPit = new Font("Arial", 12);
             SolidBrush drawBrushPit = new SolidBrush(System.Drawing.Color.Black);
             PointF drawPointPit = new PointF(100 + interfaceOffset, 768 - 57);
             g.DrawString(pitsstopsDone.ToString(), drawFontPit, drawBrushPit, drawPointPit);
